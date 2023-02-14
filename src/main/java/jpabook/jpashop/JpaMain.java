@@ -1,5 +1,8 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,6 +19,18 @@ public class JpaMain {
         tx.begin();
 
         try {
+            // 방법 1 (양방향 사용)
+            // Order order = new Order();
+            // order.addOrderItem(new OrderItem()); // order 객체를 만들어 order에 딸린 item인 orderItem을 쭈욱 추가할 수 있음
+
+            // 방법 2 (양방향 사용 X, 단방향)
+            Order order = new Order();
+            em.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem);
 
             tx.commit();
         } catch (Exception e) {
