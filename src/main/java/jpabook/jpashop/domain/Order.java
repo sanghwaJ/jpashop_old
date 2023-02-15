@@ -20,9 +20,16 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    // 양방향 (이 부분은 order에 딸린 item 내역들을 조회하는 경우가 많기 때문에 권장되는 설계)
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    // 양방향 (이 부분은 order에 딸린 item 내역들을 조회하는 경우가 많기 때문에 권장되는 설계)
+    // @OneToMany(mappedBy = "order")
+    // private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
 
