@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 
@@ -19,18 +20,24 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
+
             // 방법 1 (양방향 사용)
             // Order order = new Order();
             // order.addOrderItem(new OrderItem()); // order 객체를 만들어 order에 딸린 item인 orderItem을 쭈욱 추가할 수 있음
 
             // 방법 2 (양방향 사용 X, 단방향)
-            Order order = new Order();
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-
-            em.persist(orderItem);
+            // Order order = new Order();
+            // em.persist(order);
+            //
+            // OrderItem orderItem = new OrderItem();
+            // orderItem.setOrder(order);
+            //
+            // em.persist(orderItem);
 
             tx.commit();
         } catch (Exception e) {

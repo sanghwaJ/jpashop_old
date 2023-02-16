@@ -2,8 +2,10 @@ package jpabook.jpashop.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
-public class OrderItem {
+public class OrderItem  extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -12,13 +14,13 @@ public class OrderItem {
 
     // @Column(name = "ORDER_ID")
     // private Long orderId;
-    @ManyToOne // orderItem은 many, order는 one
+    @ManyToOne(fetch = LAZY) // orderItem은 many, order는 one
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     // @Column(name = "ITEM_ID")
     // private Long itemId;
-    @ManyToOne // orderItem은 many, item은 one
+    @ManyToOne(fetch = LAZY) // orderItem은 many, item은 one
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
