@@ -30,7 +30,7 @@ public class JpaMain {
             // Order order = new Order();
             // order.addOrderItem(new OrderItem()); // order 객체를 만들어 order에 딸린 item인 orderItem을 쭈욱 추가할 수 있음
 
-            // 방법 2 (양방향 사용 X, 단방향)
+            // 방법 2 (양방향 사용 X, 단방향 O)
             // Order order = new Order();
             // em.persist(order);
             //
